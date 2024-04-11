@@ -1,0 +1,41 @@
+<div class="flex">
+    <span>
+        <mat-icon class="icon" (click)="back(isEdit?2:1)">arrow_back</mat-icon>
+    </span>
+<h2 class="ml-4">{{isEdit ? 'Edit' : 'Create'}} User</h2></div>
+<form [formGroup]="userForm" class="flex flex-col w-40 ml-2">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput type="text" formControlName="username" required [readonly]="isEdit">
+    </mat-form-field>
+    
+    <mat-form-field [ngClass]="isEdit?'hidden':''">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" [required]="!isEdit">
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" formControlName="firstName" required>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" formControlName="lastName" required>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Date of Birth</mat-label>
+      <input matInput type="date" formControlName="dob" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Roles</mat-label>
+        <mat-select formControlName="roles" multiple>
+            <mat-option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    
+    <button mat-raised-button color="primary" (click)="submitUser()" [disabled]="userForm.invalid">{{isEdit ? 'Edit' : 'Create'}} User</button>
+  </form>
+  

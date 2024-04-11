@@ -1,0 +1,20 @@
+<div class="flex">
+    <span>
+        <mat-icon class="icon" (click)="back(isEdit?2:1)">arrow_back</mat-icon>
+    </span>
+<h2 class="ml-4">{{isEdit ? 'Edit' : 'Create'}} Role</h2></div>
+<div class="ml-2">
+    <form class="flex flex-col w-40" [formGroup]="roleForm">
+        <mat-form-field>
+          <input matInput formControlName="roleNameControl" placeholder="Role Name" [readonly]="isEdit">
+          <mat-error *ngIf="this.roleForm.get('roleNameControl').hasError('required')">Role Name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Permission</mat-label>
+          <mat-select formControlName="permissionControl" multiple>
+            <mat-option *ngFor="let permission of permissions" [value]="permission.name">{{ permission.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button  color="primary" type="submit" (click)="submit()" [disabled]="!this.roleForm.get('roleNameControl').valid || !this.roleForm.get('permissionControl').value">{{isEdit ? 'Update' : 'Create'}} Role</button>
+      </form>
+</div>

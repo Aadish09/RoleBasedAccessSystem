@@ -1,0 +1,17 @@
+<div class="container flex flex-col align-center justify-center h-100vh primary-bg">
+    <h2 class="header">Access Management System</h2>
+    <mat-card class="card ">
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="p-4">
+        <div class="flex-col">
+            <mat-form-field class="form-group">
+                <input matInput placeholder="Username" formControlName="username">
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput type="password" placeholder="Password" formControlName="password">
+              </mat-form-field>
+        </div>
+        
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </form>
+    </mat-card>
+  </div>

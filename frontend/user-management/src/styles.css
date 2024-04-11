@@ -1,0 +1,79 @@
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.flex {
+    display: flex;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.p-4 {
+    padding: 4rem;
+}
+
+.align-center {
+    align-items: center;
+}
+.justify-center {
+    justify-content: center;
+}
+
+.h-100vh {
+    height: 100vh;;
+}
+
+.primary-bg {
+    background: #673ab7;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.icon {
+    font-size: x-large;
+    cursor: pointer;
+    padding: 4px;
+    margin-top: 3px;
+}
+
+.ml-4 {
+    margin-left: 4rem;
+}
+
+.ml-2 {
+    margin-left: 2rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.mt-5{
+    margin-top: 5px;
+}
+
+.header {
+    font-size: 36px !important;
+    color: white;
+    margin-bottom: 4rem !important;
+}
