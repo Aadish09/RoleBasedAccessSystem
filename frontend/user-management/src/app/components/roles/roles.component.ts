@@ -37,8 +37,9 @@ export class RolesComponent {
   }
 
   deleteRole(role: Role) {
-    this.utilService.deleteRole(role.name).subscribe((res)=> {
-      this._snackBar.open("Role deleted successfully!", "Ok" , {duration : 2000})
+    this.utilService.deleteRole(role.id).subscribe((res)=> {
+      this._snackBar.open("Role deleted successfully!", "Ok" , {duration : 2000});
+      this.fetchRoles();
     })
   }
 

@@ -60,4 +60,12 @@ export class UsersComponent {
   editUser(element: any) {
     this._router.navigate(["./edit" , element.id], {relativeTo : this.route})
   }
+
+
+  deleteUser(user: any) {
+    this.utilService.deleteUser(user.id).subscribe((res)=> {
+      this._snackBar.open("Role deleted successfully!", "Ok" , {duration : 2000});
+      this.fetchUsers();
+    })
+  }
 }

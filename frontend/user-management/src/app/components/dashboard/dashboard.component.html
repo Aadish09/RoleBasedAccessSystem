@@ -1,11 +1,14 @@
-<div class="dashboard-container " *ngIf="user">
+<div class="dashboard-container " *ngIf="user && actions">
     <mat-sidenav-container class="sidenav-container h-100vh">
       <mat-sidenav #sidenav class="sidenav" mode="side" opened>
         <mat-toolbar color="primary">Access Management System</mat-toolbar>
         <mat-nav-list>
+          <a mat-list-item routerLink="./home" >Home</a>
           <a mat-list-item routerLink="./users">Users</a>
           <a mat-list-item routerLink="./permissions">Permissions</a>
           <a mat-list-item routerLink="./roles">Roles</a>
+          <a mat-list-item routerLink="./actions" *appRolePermission="'update_actions'">Actions</a>
+
 
           <!-- Add more options based on user's roles/permissions -->
         </mat-nav-list>

@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { UtilService } from '../../services/util.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -24,13 +25,14 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginForm: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder, private loginService : LoginService, private router : Router) {}
+  constructor(private formBuilder: FormBuilder,private utilService: UtilService, private loginService : LoginService, private router : Router) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this.fetchActions();
   }
 
   login() {
@@ -40,9 +42,17 @@ export class LoginComponent {
       this.loginService.login(username, password).subscribe((res)=> {
         if(res) {
           localStorage.setItem("accessToken", res.accessToken);
-          this.router.navigate(["../dashboard/users"])
+          this.router.navigate(["../dashboard/home"]);
         }
       })
     }
+  }
+
+
+  fetchActions() {
+    this.utilService.getActions()
+      .subscribe(data => {
+        this.loginService.setActions(data);
+      });
   }
 }

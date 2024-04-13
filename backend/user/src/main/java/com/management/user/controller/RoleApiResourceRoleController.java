@@ -43,4 +43,11 @@ public class RoleApiResourceRoleController {
         return ResponseEntity.ok(rolePermissionDto);
     }
 
+
+    @DeleteMapping("/roles/{roleId}")
+    public ResponseEntity<Long> deleteRoleById(@PathVariable Long roleId) {
+        roleService.deleteRoleById(roleId);
+        return ResponseEntity.ok(roleId);
+    }
+
 }

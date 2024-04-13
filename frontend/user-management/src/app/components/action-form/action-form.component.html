@@ -1,0 +1,13 @@
+<h2>Actions</h2>
+<form [formGroup]="actionForm" *ngIf="formCreated">
+    @for (item of Object.keys(actionForm.controls); track $index) {
+        <h4>{{item.split("_").join(" ") | titlecase}}</h4>
+        <mat-form-field>
+            <mat-select [formControlName]="item" multiple>
+                <mat-option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    }
+    <div><button mat-raised-button  color="primary" type="submit" (click)="updateActions()">Save</button></div>
+
+</form>

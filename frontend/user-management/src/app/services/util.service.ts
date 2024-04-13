@@ -43,8 +43,8 @@ export class UtilService {
   }
 
 
-  deleteRole(payload: any) {
-    return this._http.post(this.baseUrl + "roles", payload);
+  deleteRole(id: any) {
+    return this._http.delete(this.baseUrl + "roles/" + id, {});
   }
 
   createUser(payload: any) {
@@ -58,4 +58,18 @@ export class UtilService {
   createPermission(payload: any) {
     return this._http.post(this.baseUrl + "permissions", payload);
   }
+
+  deleteUser(id: number) {
+    return this._http.delete(this.baseUrl + "users/" + id, {});
+  }
+
+  getActions() {
+    return this._http.get<any[]>(this.baseUrl + "actions");
+  }
+
+  updateActions(payload: any) {
+    return this._http.put<any[]>(this.baseUrl + "actions", payload);
+  }
+
+
 }

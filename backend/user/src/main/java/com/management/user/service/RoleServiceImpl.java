@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.ws.rs.BadRequestException;
@@ -17,8 +18,10 @@ import org.springframework.stereotype.Service;
 
 import com.management.user.dao.PermissionRepository;
 import com.management.user.dao.RoleRepository;
+import com.management.user.dao.UserRoleRepository;
 import com.management.user.entity.Permission;
 import com.management.user.entity.Role;
+import com.management.user.entity.UserRoleMapping;
 import com.management.user.exception.CustomException;
 import com.management.user.exception.ResourceNotFoundException;
 import com.management.user.model.RoleDto;
@@ -34,6 +37,9 @@ public class RoleServiceImpl implements RoleService{
 
     @Autowired
     private PermissionRepository permissionRepository;
+
+    @Autowired
+    private UserRoleRepository userRoleRepository;
 
     @Override
     @Transactional
@@ -74,6 +80,20 @@ public class RoleServiceImpl implements RoleService{
     public RolePermissionDto getRoleById(Long roleId) {
         Role role = roleRepository.findById(roleId).orElseThrow(() -> new ResourceNotFoundException("Role not found with ID: " + roleId));
         return convertToDto(role);
+    }
+
+    @Override
+    public Long deleteRoleById(Long roleId) {
+        Optional<Role> role = roleRepository.findById(roleId);
+        if(role.isPresent()) {
+            Optional<UserRoleMapping> roleData = userRoleRepository.findByRole(role.get());
+            if(roleData.isPresent()){
+                throw new CustomException("Role associated with user.");
+            }
+            roleRepository.deleteById(roleId);
+            return roleId;
+        }
+        return null;
     }
 
     private RolePermissionDto convertToDto(Role role) {

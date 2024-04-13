@@ -115,4 +115,10 @@ public class UserServiceImpl implements UserService {
         }
         throw new ResourceNotFoundException("User not found with username " + username);
     }
+
+    public Long deleteUser(Long id) {
+        userRepository.deleteById(id);
+        return id;
+    }
+
 }

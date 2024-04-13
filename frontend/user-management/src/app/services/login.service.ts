@@ -8,7 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 export class LoginService {
   TOKEN_KEY = "accessToken"
   baseUrl : string = "http://localhost:8080/api/v1/auth";
-  subject = new BehaviorSubject(null);
+  currentUser = new BehaviorSubject(null);
+  actionSubject = new BehaviorSubject(null);
   constructor(private _http: HttpClient) {
       
    }
@@ -34,11 +35,21 @@ export class LoginService {
   }
 
   setCurrentUser(user: any) {
-    this.subject.next(user)
+    this.currentUser.next(user)
   }
 
   getCurrentUser() {
-    return this.subject.getValue();
+    return this.currentUser.getValue();
   }
+
+  setActions(actions: any) {
+     this.actionSubject.next(actions);
+  }
+
+  getActions() {
+    return this.actionSubject.getValue();
+  }
+
+  
 
 }

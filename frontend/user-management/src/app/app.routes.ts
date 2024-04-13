@@ -9,11 +9,14 @@ import { PermissionsComponent } from './components/permissions/permissions.compo
 import { CreateRoleFormComponent } from './components/create-role-form/create-role-form.component';
 import { UsersCreateComponent } from './components/users-create/users-create.component';
 import { CreatePermissionsComponent } from './components/create-permissions/create-permissions.component';
+import { ActionFormComponent } from './components/action-form/action-form.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
     { path : '', component: AppComponent, canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent},
     { path: 'dashboard', component: DashboardComponent , canActivate: [AuthGuard] , children: [
+        { path : 'home', component: HomeComponent, canActivate: [AuthGuard]},
         { path: 'users', component: UsersComponent , canActivate: [AuthGuard]},
         { path: 'roles', component: RolesComponent , canActivate: [AuthGuard]},
         { path: 'permissions', component: PermissionsComponent , canActivate: [AuthGuard]},
@@ -21,6 +24,7 @@ export const routes: Routes = [
         { path: 'users/create', component: UsersCreateComponent , canActivate: [AuthGuard]},
         { path: 'permissions/create', component: CreatePermissionsComponent , canActivate: [AuthGuard]},
         { path: 'roles/edit/:id', component: CreateRoleFormComponent , canActivate: [AuthGuard]},   
-        { path: 'users/edit/:id', component: UsersCreateComponent , canActivate: [AuthGuard]}
+        { path: 'users/edit/:id', component: UsersCreateComponent , canActivate: [AuthGuard]},
+        { path: 'actions', component: ActionFormComponent , canActivate: [AuthGuard]}
     ]}
 ];
